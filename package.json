@@ -10,7 +10,14 @@
     "eggPlugin",
     "egg-plugin"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "await-stream-ready": "^1.0.1",
+    "formstream": "^1.1.0",
+    "fs-extra": "^7.0.1",
+    "lodash": "^4.17.11",
+    "stream-wormhole": "^1.1.0",
+    "uuid": "^3.3.2"
+  },
   "devDependencies": {
     "autod": "^3.0.0",
     "autod-egg": "^1.0.0",
