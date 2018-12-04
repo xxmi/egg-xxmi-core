@@ -42,9 +42,10 @@
     "autod": "autod"
   },
   "files": [
-    "app.js",
+    "app",
+    "config",
     "agent.js",
-    "config"
+    "app.js"
   ],
   "ci": {
     "version": "8, 9"
