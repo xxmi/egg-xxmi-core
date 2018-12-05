@@ -9,6 +9,7 @@ module.exports = () => {
   return async function uploadFile (ctx, next) {
     const {app} = ctx;
     const config = app.config;
+    const {uploadFile: {baseDir, tempPath}} = config.xxmiCore;
     ctx.upload = {
       formStream: null,
       field: {}
@@ -23,11 +24,13 @@ module.exports = () => {
       const parts = ctx.multipart({autoFields: true});
       const formStream = new FormStream();
       let stream;
+      // 临时目录路径
+      const dirPath = baseDir ? path.join(config.baseDir, tempPath) : tempPath;
       // 临时目录（没有则创建该目录）
-      fsExtra.ensureDirSync(path.join(config.baseDir, config.uploadFile.tempPath));
+      fsExtra.ensureDirSync(dirPath);
       while ((stream = await parts()) != null) {
         const filename = stream.filename.toLowerCase();
-        const target = path.join(config.baseDir, config.uploadFile.tempPath, uuidv4() + filename);
+        const target = path.join(dirPath, uuidv4() + filename);
         // 保存到临时目录
         const writeStream = fs.createWriteStream(target);
         try {

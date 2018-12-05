@@ -1,6 +1,6 @@
 {
   "name": "egg-xxmi-core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "eggPlugin": {
     "name": "xxmiCore"
@@ -41,7 +41,7 @@
     "pkgfiles": "egg-bin pkgfiles",
     "autod": "autod"
   },
-  "files": [ // 需要发布到 npm 包上的文件
+  "files": [
     "app",
     "config",
     "agent.js",

@@ -14,5 +14,9 @@ exports.xxmiCore = {
     ],
     url: '/login',
     safe: true // true: redirect 模式；false: unsafeRedirect 模式
+  },
+  uploadFile: {
+    baseDir: true, // true：需要 path.join(ctx.baseDir)
+    tempPath: 'upload/temp'
   }
 };
