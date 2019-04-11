@@ -8,27 +8,26 @@
 exports.xxmiCore = {
   access: {
     name: 'access',
-    enable: true // 是否开启这个中间件
+    enable: true, // 是否开启这个中间件
   },
   auth: {
     name: 'auth',
     enable: true,
     whiteList: [
-      '/no-auth-api',
       /^\/reset-password(\/.+)?/,
-      '/401', '/403', '/404', '/login', '/authSuccess', '/authFailed', '/logout', '/captcha'
+      '/401', '/403', '/404', '/login', '/logout',
     ],
     url: '/login',
-    safe: true // true: redirect 模式；false: unsafeRedirect 模式
+    safe: true, // true: redirect 模式；false: unsafeRedirect 模式
   },
   notFound: {
     name: 'notFound',
-    enable: true
+    enable: true,
   },
   uploadFile: {
     name: 'uploadFile',
     enable: true,
     baseDir: true, // true：需要 path.join(ctx.baseDir)
-    tempPath: 'upload/temp'
-  }
+    tempPath: 'upload/temp',
+  },
 };

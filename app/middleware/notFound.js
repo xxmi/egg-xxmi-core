@@ -1,3 +1,4 @@
+'use strict';
 module.exports = () => {
   return async function notFound(ctx, next) {
     await next();
@@ -5,7 +6,7 @@ module.exports = () => {
     const headers = accept.headers;
     if (ctx.status === 404 && !ctx.body) {
       if (ctx.acceptJSON || (headers['content-type'] && headers['content-type'] === 'application/json')) {
-        ctx.body = {code: '404', error: 'Not Found'};
+        ctx.body = { code: '404', error: 'Not Found' };
         ctx.status = 404;
       } else {
         ctx.redirect('/404');

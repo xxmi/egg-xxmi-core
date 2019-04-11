@@ -1,3 +1,4 @@
+'use strict';
 const sendToWormhole = require('stream-wormhole');
 const FormStream = require('formstream');
 const fs = require('fs');
@@ -6,13 +7,13 @@ const awaitWriteStream = require('await-stream-ready').write;
 const uuidv4 = require('uuid/v4');
 const fsExtra = require('fs-extra');
 module.exports = () => {
-  return async function uploadFile (ctx, next) {
-    const {app} = ctx;
+  return async function uploadFile(ctx, next) {
+    const { app, logger } = ctx;
     const config = app.config;
-    const {uploadFile: {baseDir, tempPath}} = config.xxmiCore;
+    const { uploadFile: { baseDir, tempPath } } = config.xxmiCore;
     ctx.upload = {
       formStream: null,
-      field: {}
+      field: {},
     };
     // 请求头 ContentType 为 multipart/* 的才做文件上传，保存到临时目录
     const contentType = ctx.get('Content-Type');
@@ -21,7 +22,7 @@ module.exports = () => {
       return await next();
     }
     try {
-      const parts = ctx.multipart({autoFields: true});
+      const parts = ctx.multipart({ autoFields: true });
       const formStream = new FormStream();
       let stream;
       // 临时目录路径
@@ -48,7 +49,7 @@ module.exports = () => {
       }
       ctx.upload.formStream = formStream;
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
     await next();
   };

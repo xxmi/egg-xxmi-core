@@ -1,8 +1,10 @@
+'use strict';
+
 module.exports = app => {
-  const {xxmiCore} = app.config;
+  const { xxmiCore } = app.config;
   const middleware = [];
-  for (let key in xxmiCore) {
-    const {name, enable} = xxmiCore[key];
+  for (const key in xxmiCore) {
+    const { name, enable } = xxmiCore[key];
     if (enable && name) {
       middleware.push(name);
     }
